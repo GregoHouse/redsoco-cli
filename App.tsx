@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import type { PropsWithChildren } from 'react';
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View } from 'react-native';
 
@@ -16,6 +16,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+import BootSplash from 'react-native-bootsplash';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -35,6 +37,10 @@ function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = { backgroundColor: isDarkMode ? Colors.darker : Colors.lighter };
+
+  useEffect(() => {
+    setTimeout(() => BootSplash.hide({ fade: true }), 5000);
+  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
